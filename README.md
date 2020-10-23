@@ -17,9 +17,6 @@ https://github.com/williamliao777/Airline_Project/tree/master
 
 **4. install node js**
 https://nodejs.org/en/
-```
-npm install && npm run dev
-```
 
 
 
@@ -32,6 +29,7 @@ project
 
 **Build Laravel framework**
 cd to code folder
+copy .env.example  named .env
 
 * install laravel dependencies.
 composer will use the **code/composer.json**   install module setted in this file 
@@ -43,10 +41,15 @@ composer install
 ```
 composer update
 ```
+* Install front-end module
+```
+npm install && npm run dev
+```
 
 **Build Docker Environment**
 
 cd to devOps folder
+copy .env.example  named .env
 
 ```
 docker-compose up -d nginx mysql phpmyadmin
