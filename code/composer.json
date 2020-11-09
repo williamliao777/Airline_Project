@@ -9,14 +9,16 @@
     "license": "MIT",
     "require": {
         "php": "^7.3",
+        "almasaeed2010/adminlte": "~2.4",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "inertiajs/inertia-laravel": "^0.2.4",
         "laravel/framework": "^8.0",
-        "laravel/jetstream": "^1.5",
+        "laravel/jetstream": "^1.6",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.0",
+        "laravel/ui": "^3.1",
         "livewire/livewire": "^2.0",
         "tightenco/ziggy": "^0.9.4"
     },

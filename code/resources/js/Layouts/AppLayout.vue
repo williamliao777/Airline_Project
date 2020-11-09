@@ -14,7 +14,7 @@
 
                         <!-- Navigation Links -->
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <jet-nav-link :href="route('dashboard')" :active="$page.currentRouteName == 'dashboard'">
+                            <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                 Dashboard
                             </jet-nav-link>
                         </div>
@@ -79,7 +79,7 @@
                                         </div>
 
                                         <template v-for="team in $page.user.all_teams">
-                                            <form @submit.prevent="switchToTeam(team)">
+                                            <form @submit.prevent="switchToTeam(team)" :key="team.id">
                                                 <jet-dropdown-link as="button">
                                                     <div class="flex items-center">
                                                         <svg v-if="team.id == $page.user.current_team_id" class="mr-2 h-5 w-5 text-green-400" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -118,7 +118,7 @@
             <!-- Responsive Navigation Menu -->
             <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                 <div class="pt-2 pb-3 space-y-1">
-                    <jet-responsive-nav-link :href="route('dashboard')" :active="$page.currentRouteName == 'dashboard'">
+                    <jet-responsive-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                         Dashboard
                     </jet-responsive-nav-link>
                 </div>
@@ -137,11 +137,11 @@
                     </div>
 
                     <div class="mt-3 space-y-1">
-                        <jet-responsive-nav-link :href="route('profile.show')" :active="$page.currentRouteName == 'profile.show'">
+                        <jet-responsive-nav-link :href="route('profile.show')" :active="route().current('profile.show')">
                             Profile
                         </jet-responsive-nav-link>
 
-                        <jet-responsive-nav-link :href="route('api-tokens.index')" :active="$page.currentRouteName == 'api-tokens.index'" v-if="$page.jetstream.hasApiFeatures">
+                        <jet-responsive-nav-link :href="route('api-tokens.index')" :active="route().current('api-tokens.index')" v-if="$page.jetstream.hasApiFeatures">
                             API Tokens
                         </jet-responsive-nav-link>
 
@@ -161,11 +161,11 @@
                             </div>
 
                             <!-- Team Settings -->
-                            <jet-responsive-nav-link :href="route('teams.show', $page.user.current_team)" :active="$page.currentRouteName == 'teams.show'">
+                            <jet-responsive-nav-link :href="route('teams.show', $page.user.current_team)" :active="route().current('teams.show')">
                                 Team Settings
                             </jet-responsive-nav-link>
 
-                            <jet-responsive-nav-link :href="route('teams.create')" :active="$page.currentRouteName == 'teams.create'">
+                            <jet-responsive-nav-link :href="route('teams.create')" :active="route().current('teams.create')">
                                 Create New Team
                             </jet-responsive-nav-link>
 
@@ -211,7 +211,6 @@
 </template>
 
 <script>
-    import JetApplicationLogo from '@/Jetstream/ApplicationLogo'
     import JetApplicationMark from '@/Jetstream/ApplicationMark'
     import JetDropdown from '@/Jetstream/Dropdown'
     import JetDropdownLink from '@/Jetstream/DropdownLink'
@@ -220,7 +219,6 @@
 
     export default {
         components: {
-            JetApplicationLogo,
             JetApplicationMark,
             JetDropdown,
             JetDropdownLink,
@@ -248,12 +246,6 @@
                     window.location = '/';
                 })
             },
-        },
-
-        computed: {
-            path() {
-                return window.location.pathname
-            }
         }
     }
 </script>
