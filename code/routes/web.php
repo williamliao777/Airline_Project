@@ -17,9 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/admin', function () {
-    return view('admin.index');
-})->name('admin_index');
+//Route::middleware(['auth:sanctum', 'verified'])->get('/admin/AirlineMetrics', function () {
+//    return view('admin.index');
+//})->name('admin_index');
+
+Route::get('/admin', [App\Http\Controllers\AirlineMetricsController::class, 'index']);
+Route::get('/MarketPerformance', [App\Http\Controllers\MarketPerformanceController::class, 'index']);
+Route::get('/SupplyAndDemand', [App\Http\Controllers\SupplyAndDemandController::class, 'index']);
 
 Auth::routes();
 

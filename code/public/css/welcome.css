@@ -46,35 +46,35 @@ section::before
 {
     position: absolute;
     right: 0;
-    bottom: 0px;
+    bottom: 0;
     max-width: 600px;
 }
 #cloud4
 {
     position: absolute;
     left: 0;
-    bottom: 0px;
+    bottom: 0;
     max-width: 600px;
 }
 #cloud5
 {
     position: absolute;
     right: 0;
-    bottom: 0px;
+    bottom: 0;
     max-width: 600px;
 }
 #cloud6
 {
     position: absolute;
     left: 0;
-    bottom: 0px;
+    bottom: 0;
     max-width: 600px;
 }
 #cloud7
 {
     position: absolute;
     right: 0;
-    bottom: 0px;
+    bottom: 0;
     max-width: 600px;
 }
 #airplane
