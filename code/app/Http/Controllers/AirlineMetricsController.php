@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Market;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,7 @@ class AirlineMetricsController extends Controller
 
     public function index()
     {
+
         $menus = Menu::all();
         return view('admin.airline_metrics', [
             "menus" => $menus,

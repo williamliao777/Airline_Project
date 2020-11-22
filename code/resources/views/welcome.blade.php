@@ -32,8 +32,6 @@
         <h1>test</h1>
     </div>
 </div>
-<script src="{{ asset('js/gsap.js') }}"></script>
-<script src="{{ asset('js/ScrollTrigger.js') }}"></script>
 <script>
     $(function() {
         gsap.to("#sky",{
