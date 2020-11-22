@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Route::get('/admin/AirlineMetrics', [App\Http\Controllers\AirlineMetricsController::class, 'index']);
 Route::get('/admin/MarketPerformance', [App\Http\Controllers\MarketPerformanceController::class, 'index']);
-Route::get('/admin/SupplyAndDemand', [App\Http\Controllers\SupplyAndDemandController::class, 'index']);
+Route::get('/admin/SupplyAndDemand', [App\Http\Controllers\SupplyDemandController::class, 'index']);
 
 Auth::routes();
 
