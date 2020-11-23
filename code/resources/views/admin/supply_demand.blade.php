@@ -82,23 +82,6 @@
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
-
-                        <!-- DONUT CHART -->
-                        <div class="card card-success">
-                            <div class="card-header">
-                                <h3 class="card-title">Route</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                                </div>
-                            </div>
-                            <div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 772px;" width="1544" height="500" class="chartjs-render-monitor"></canvas>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-sm-6">
                         <!-- LINE CHART -->
@@ -137,16 +120,13 @@
         var map = $("#map");
 
         var svg = d3.select("#map").append("svg")
-            // .attr("width", map.width())
-            // .attr("height", map.height())
-            .style("font", "15px sans-serif")
-            .scale(3000)
-            .translate([map.width / 2, map.height / 2])
-            .attr("transform", "scale(2)");
+            .attr("width", map.width())
+            .attr("height", map.height())
+            .style("font", "15px sans-serif");
 
         var projection = d3.geoAlbersUsa()
-                            .scale(1000);
-                            // .translate([487.5, 305]);
+                            .scale(map.height()*2)
+                            .translate([map.width()/2, map.height()/2]);
 
         var path = d3.geoPath(projection);
 
@@ -163,7 +143,7 @@
         });
 
         // draw airport and route
-        // d3.json("sample_route.json").then(function(data){      
+        // d3.json("sample_route.json").then(function(data){
         //     // draw routes
         //     //sort links by source, then target
         //     // data.route.sort(function(a,b) {
@@ -227,7 +207,7 @@
         //     for (var name in data.airport){
         //             airport.push([name, data.airport[name]]);
         //     }
-            
+
         //     const node = svg.append("g")
         //                     .attr("fill", "currentColor")
         //                     .attr("stroke-linecap", "round")
@@ -265,23 +245,23 @@
 
         // });
 
-        
+
         function lngLat_to_arc(d, bend){
             bend = bend || 1;
             var  sourceXY = lngLat_proj(d["source"]),
                 targetXY = lngLat_proj(d["target"]);
-            
+
             var sourceX = sourceXY[0],
                 sourceY = sourceXY[1];
 
             var targetX = targetXY[0],
                 targetY = targetXY[1];
 
-            
+
             var dx = targetX - sourceX,
                 dy = targetY - sourceY,
                 dr = Math.sqrt(dx*dx + dy*dy)/d.linknum*3;
-                
+
             return "M" + sourceX + "," + sourceY + "A" + dr + "," + dr + " 0 0,1 " + targetX + "," + targetY;
 
         }
