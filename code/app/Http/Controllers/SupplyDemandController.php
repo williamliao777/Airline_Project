@@ -24,15 +24,16 @@ class SupplyDemandController extends Controller
         $T100 = new T100();
         $Airport = new Airport();
 
-        $total = array();
+        $total_avgfare = array();
         $airports = array();
         $routes = array();
 
         $target = "IAD";
 
         $DistSeat = $T100->getDistSeat("t100_seg", $target);
+        $i = 0;
         foreach($DistSeat as $e){
-            $total[$e->origin.'_'.$e->dest] = array(
+            $total_avgfare[$e->origin.'_'.$e->dest] = array(
                 "origin"=>$e->origin,
                 "dest"=>$e->dest,
                 "dist"=>$e->dist, 
@@ -40,12 +41,13 @@ class SupplyDemandController extends Controller
             );
             $airports[] = "'{$e->origin}'";
             $airports[] = "'{$e->dest}'";
-            $routes[] = ["source"=>$e->origin, "target"=>$e->dest];
+            $routes[] = ["source"=>$e->origin, "target"=>$e->dest, "route_id"=>$i];
+            $i++;
         }
 
         // $AvgFare = $coupon->getAvgFare("coupon_2016_3_2", "IAD");
         // foreach($AvgFare as $e){
-        //     $total[$e->origin.'_'.$e->dest]["fare"] = $e->fare;
+        //     $total_avgfare[$e->origin.'_'.$e->dest]["fare"] = $e->fare;
         // }
 
         $airports = $Airport->getCoordinate(implode(",", array_unique($airports)));
@@ -56,16 +58,17 @@ class SupplyDemandController extends Controller
                 $e->is_origin = 0;
             }
         }
-
         $airports_json = json_encode($airports);
         $routes_json = json_encode($routes);
-        
+        // $total_avgfare_json = json_encode($total_avgfare);
+        // dd($total_avgfare);
         $menus = Menu::all();
         return view('admin.supply_demand', [
             "menus" => $menus,
             "current_menu" => $this->current_menu,
             "airports_json" => $airports_json,
             "routes_json" => $routes_json
+            // "total_avgfare_json" => $total_avgfare
         ]);
     }
 }
