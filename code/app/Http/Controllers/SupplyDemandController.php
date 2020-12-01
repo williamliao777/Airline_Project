@@ -24,32 +24,40 @@ class SupplyDemandController extends Controller
         $T100 = new T100();
         $Airport = new Airport();
 
-        $total_avgfare = array();
+        $total = array();
         $airports = array();
         $routes = array();
 
         $target = "IAD";
 
-        $DistSeat = $T100->getDistSeat("t100_seg", $target);
-        $i = 0;
-        foreach($DistSeat as $e){
-            $total_avgfare[$e->origin.'_'.$e->dest] = array(
+        $DistSeatPass = $T100->getDistSeatPass("t100_seg", $target);
+        foreach($DistSeatPass as $e){
+            $total[$e->origin.'_'.$e->dest] = array(
                 "origin"=>$e->origin,
                 "dest"=>$e->dest,
                 "dist"=>$e->dist, 
-                "seat"=>$e->seat
+                "seat"=>$e->seat,
+                "pass"=>$e->pass
             );
-            $airports[] = "'{$e->origin}'";
-            $airports[] = "'{$e->dest}'";
-            $routes[] = ["source"=>$e->origin, "target"=>$e->dest, "route_id"=>$i];
-            $i++;
+        }
+        
+        $AvgFare = $coupon->getAvgFare("coupon_2016_3_2", "IAD");
+        foreach($AvgFare as $e){
+            $total[$e->origin.'_'.$e->dest]["fare"] = $e->fare;
         }
 
-        // $AvgFare = $coupon->getAvgFare("coupon_2016_3_2", "IAD");
-        // foreach($AvgFare as $e){
-        //     $total_avgfare[$e->origin.'_'.$e->dest]["fare"] = $e->fare;
-        // }
-
+        // drop those entities without fare and add those with fare to airport and route
+        $i = 0;
+        foreach($total as $key => $value){
+            if(!array_key_exists("fare", $total[$key]) | !array_key_exists("origin", $total[$key])){
+                unset($total[$key]);
+            }else{
+                $airports[] = "'{$value["origin"]}'";
+                $airports[] = "'{$value["dest"]}'";
+                $routes[] = ["source"=>$value["origin"], "target"=>$value["dest"], "route_id"=>$i];
+                $i++;
+            }
+        }
         $airports = $Airport->getCoordinate(implode(",", array_unique($airports)));
         foreach($airports as $e){
             if($e->airport == $target){
@@ -60,15 +68,14 @@ class SupplyDemandController extends Controller
         }
         $airports_json = json_encode($airports);
         $routes_json = json_encode($routes);
-        // $total_avgfare_json = json_encode($total_avgfare);
-        // dd($total_avgfare);
+        $total_json = json_encode($total);
         $menus = Menu::all();
         return view('admin.supply_demand', [
             "menus" => $menus,
             "current_menu" => $this->current_menu,
             "airports_json" => $airports_json,
-            "routes_json" => $routes_json
-            // "total_avgfare_json" => $total_avgfare
+            "routes_json" => $routes_json,
+            "total_json" => $total_json
         ]);
     }
 }

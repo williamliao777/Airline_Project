@@ -61,6 +61,7 @@
                 <!-- Main row -->
                 <script src="https://d3js.org/d3.v6.min.js"></script>
                 <script src="https://unpkg.com/topojson@3"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
                 <div class="row mt-3">
                     <div class="col-md-6">
                         <!-- AREA CHART -->
@@ -97,11 +98,8 @@
                             </div>
                             <div class="card-body">
                                 <div class="chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                    <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 772px;" width="1544" height="500" class="chartjs-render-monitor"></canvas>
-                                    <script>
-                                        const avgFare = JSON.parse('{!!$total_avgfare_json!!}')
-                                        
-                                    </script>
+                                    <canvas id="BarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 772px;" width="1544" height="500" class="chartjs-render-monitor"></canvas>
+                                    
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -128,6 +126,7 @@
     }
     </style>
     
+    <!-- draw selected routes on the us map-->
     <script>
         var map = $("#map");
 
@@ -250,7 +249,6 @@
                 dy = targetY - sourceY,
                 dr = Math.sqrt(dx*dx + dy*dy);
 
-            console.log(sourceX, sourceY, dr);
 
             return "M" + sourceX + "," + sourceY + "A" + dr + "," + dr + " 0 0,1 " + targetX + "," + targetY;
 
@@ -260,6 +258,40 @@
             return projection([lng_lat["LON"], lng_lat["LAT"]]);
         }
         
+
+    </script>
+
+    <!-- draw market performance chart -->
+
+    <script>
+        var total_json = JSON.parse('{!!$total_json!!}')
+        
+        var label = new Array();
+        var data = new Array();
+        for(i in total_json){
+            label.push(total_json[i].origin+'_'+total_json[i].dest)
+            data.push(total_json[i].fare)
+        }
+
+        console.log(data)
+
+        var chart = new Chart('BarChart', {
+                    type: "horizontalBar",
+                    options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    }
+                    },
+                    data: {
+                    labels: label,
+                    datasets: [
+                        {
+                        data: data
+                        }
+                    ]
+                    }
+                });
 
     </script>
 

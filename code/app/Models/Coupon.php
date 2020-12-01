@@ -13,7 +13,7 @@ class Coupon extends Model
     public function getAvgFare($coupon, $origin){
         $coupon_fare = DB::select("select   c.Origin as origin, c.Dest as dest, avg(c.fare) as fare
                                     from    {$coupon} c
-                                    where   c.Origin= '\"{$origin}\"'
+                                    where   c.Origin= '{$origin}'
                                     group by c.Origin, c.Dest
                                     limit 10");
         return $coupon_fare;
