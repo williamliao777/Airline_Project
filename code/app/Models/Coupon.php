@@ -18,4 +18,11 @@ class Coupon extends Model
                                     limit 10");
         return $coupon_fare;
     }
+
+    public function getTotalFareAndAvgFareByAirline($origin, $dest){
+
+        $result = DB::select("select OpCarrier as airline_code, avg(Fare) as avg_fare, sum(Fare) as total_fare from coupon_2016_3_2 where Origin = '{$origin}' and Dest = '{$dest}' group by OpCarrier");
+
+        return $result;
+    }
 }
