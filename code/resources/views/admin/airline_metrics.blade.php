@@ -25,31 +25,30 @@
         <section class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
-                <form class="form-inline">
+                <form class="form-inline" method="POST" action="{{route('airlineMetrics')}}">
+                    @csrf
                     <div class="form-group">
                         <label for="inputPassword6">Market:</label>
-                        <select class="form-control mx-sm-3" id="validationDefault04" required>
+                        <select class="form-control mx-sm-3" name="market" id="validationDefault04" required>
                             <option selected disabled value="">Choose Origin</option>
-                            <option>...</option>
+                            @foreach($airports as $airport)
+                            <option value="{{$airport->AIRPORT}}" @if($market == $airport->AIRPORT) selected @endif>{{$airport->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword6">Year:</label>
-                        <select class="form-control mx-sm-3" id="validationDefault04" required>
+                        <select class="form-control mx-sm-3" name="year" id="validationDefault04" required>
                             <option selected disabled value="">Choose Year</option>
-                            <option value="2016">2016</option>
-                            <option value="2016">2017</option>
-                            <option value="2018">2018</option>
+                            <option value="2016" selected>2016</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword6">Quarter:</label>
-                        <select class="form-control mx-sm-3" id="validationDefault04" required>
+                        <select class="form-control mx-sm-3" name="quarter" id="validationDefault04" required>
                             <option selected disabled value="">Choose Quarter</option>
-                            <option value="1">1</option>
+                            <option value="1" >1</option>
                             <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
                         </select>
                     </div>
                     <button class="btn btn-primary my-1" type="submit">Search</button>
@@ -90,7 +89,7 @@
                                 </div>
                             </div>
                             <div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 772px;" width="1544" height="500" class="chartjs-render-monitor"></canvas>
+                                <canvas id="rasmChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 772px;" width="1544" height="500" class="chartjs-render-monitor"></canvas>
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -107,13 +106,13 @@
                             </div>
                             <div class="card-body">
                                 <div class="chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                    <canvas id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 772px;" width="1544" height="500" class="chartjs-render-monitor"></canvas>
+                                    <canvas id="lfChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 772px;" width="1544" height="500" class="chartjs-render-monitor"></canvas>
                                 </div>
                             </div>
                             <!-- /.card-body -->
                         </div>
 
-                        <div class="card card-primary">
+                        <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Seat  capacity  share</h3>
 
@@ -125,7 +124,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                    <canvas id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 772px;" width="1544" height="500" class="chartjs-render-monitor"></canvas>
+                                    <canvas id="cpsChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 772px;" width="1544" height="500" class="chartjs-render-monitor"></canvas>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -145,13 +144,13 @@
                             </div>
                             <div class="card-body">
                                 <div class="chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                    <canvas id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 772px;" width="1544" height="500" class="chartjs-render-monitor"></canvas>
+                                    <canvas id="casmChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 772px;" width="1544" height="500" class="chartjs-render-monitor"></canvas>
                                 </div>
                             </div>
                             <!-- /.card-body -->
                         </div>
 
-                        <div class="card card-primary">
+                        <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Revenue Passenger Mile (RPM)</h3>
 
@@ -163,7 +162,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                    <canvas id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 772px;" width="1544" height="500" class="chartjs-render-monitor"></canvas>
+                                    <canvas id="rpmChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 772px;" width="1544" height="500" class="chartjs-render-monitor"></canvas>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -181,13 +180,13 @@
                             </div>
                             <div class="card-body">
                                 <div class="chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                    <canvas id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 772px;" width="1544" height="500" class="chartjs-render-monitor"></canvas>
+                                    <canvas id="pyChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 772px;" width="1544" height="500" class="chartjs-render-monitor"></canvas>
                                 </div>
                             </div>
                             <!-- /.card-body -->
                         </div>
 
-                        <div class="card card-primary">
+                        <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Market share</h3>
 
@@ -199,7 +198,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                                    <canvas id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 772px;" width="1544" height="500" class="chartjs-render-monitor"></canvas>
+                                    <canvas id="msChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 772px;" width="1544" height="500" class="chartjs-render-monitor"></canvas>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -212,44 +211,35 @@
     </div>
     <script>
         var asm = JSON.parse('{!! $asm !!}');
-        console.log(asm);
-        console.log({
-            type: 'bar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: 'asm',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-        var ctx = document.getElementById('asm').getContext('2d');
-        var myChart = new Chart(ctx, asm);
+        var asm_ctx = document.getElementById('asm').getContext('2d');
+        var asmChart = new Chart(asm_ctx, asm);
+
+        var casm = JSON.parse('{!! $casm !!}');
+        var casm_ctx = document.getElementById('casmChart').getContext('2d');
+        var casmChart = new Chart(casm_ctx, casm);
+
+        var rasm = JSON.parse('{!! $rasm !!}');
+        var rasm_ctx = document.getElementById('rasmChart').getContext('2d');
+        var rasmChart = new Chart(rasm_ctx, rasm);
+
+        var rpm = JSON.parse('{!! $rpm !!}');
+        var rpm_ctx = document.getElementById('rpmChart').getContext('2d');
+        var rpmChart = new Chart(rpm_ctx, rpm);
+
+        var lf = JSON.parse('{!! $lf !!}');
+        var lf_ctx = document.getElementById('lfChart').getContext('2d');
+        var lfChart = new Chart(lf_ctx, lf);
+
+        var py = JSON.parse('{!! $py !!}');
+        var py_ctx = document.getElementById('pyChart').getContext('2d');
+        var pyChart = new Chart(py_ctx, py);
+
+        var cps = JSON.parse('{!! $cps !!}');
+        var cps_ctx = document.getElementById('cpsChart').getContext('2d');
+        var cpsChart = new Chart(cps_ctx, cps);
+
+        var ms = JSON.parse('{!! $ms !!}');
+        var ms_ctx = document.getElementById('msChart').getContext('2d');
+        var msChart = new Chart(ms_ctx, ms);
     </script>
 @endsection
