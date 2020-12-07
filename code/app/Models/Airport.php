@@ -19,10 +19,12 @@ class Airport extends Model
 
     public function getAllAirport(){
 
-        $airports = DB::select("select AIRPORT, DISPLAY_AIRPORT_NAME as name from airport where AIRPORT_COUNTRY_NAME = 'United States' order by DISPLAY_AIRPORT_NAME asc");
+        $airports = DB::select("select AIRPORT as code, DISPLAY_AIRPORT_NAME as name from airport where AIRPORT_COUNTRY_NAME = 'United States' order by DISPLAY_AIRPORT_NAME asc");
 
         return $airports;
 
     }
+
+
 
 }

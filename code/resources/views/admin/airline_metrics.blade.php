@@ -11,10 +11,6 @@
                         <h1 class="m-0 text-dark">{{$current_menu}}</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard v1</li>
-                        </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -25,31 +21,41 @@
         <section class="content">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
-                <form class="form-inline" method="POST" action="{{route('airlineMetrics')}}">
+                <form method="POST" action="{{route('airlineMetrics')}}">
                     @csrf
-                    <div class="form-group">
-                        <label for="inputPassword6">Market:</label>
-                        <select class="form-control mx-sm-3" name="market" id="validationDefault04" required>
-                            <option selected disabled value="">Choose Origin</option>
-                            @foreach($airports as $airport)
-                            <option value="{{$airport->AIRPORT}}" @if($market == $airport->AIRPORT) selected @endif>{{$airport->name}}</option>
-                            @endforeach
-                        </select>
+                    <div class="form-row">
+                        <div class="form-group col-1">
+                            <label for="inputPassword6">Year:</label>
+                            <select class="form-control mx-sm-3" name="year" id="year" required>
+                                <option value="2016" selected>2016</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-1">
+                            <label for="inputPassword6">Quarter:</label>
+                            <select class="form-control mx-sm-3" name="quarter" id="quarter" required>
+                                <option value="" >Choose Quarter</option>
+                                <option value="3" >3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="inputPassword6">Year:</label>
-                        <select class="form-control mx-sm-3" name="year" id="validationDefault04" required>
-                            <option selected disabled value="">Choose Year</option>
-                            <option value="2016" selected>2016</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword6">Quarter:</label>
-                        <select class="form-control mx-sm-3" name="quarter" id="validationDefault04" required>
-                            <option selected disabled value="">Choose Quarter</option>
-                            <option value="1" >1</option>
-                            <option value="2">2</option>
-                        </select>
+                    <p>
+                        <button class="btn-lg btn-success" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Select Airline
+                        </button>
+                    </p>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <div class="form-row collapse" id="collapseExample">
+                        <div class="form-group col-12 airline_group_div">
+                        </div>
                     </div>
                     <button class="btn btn-primary my-1" type="submit">Search</button>
                 </form>
@@ -210,36 +216,81 @@
         </section>
     </div>
     <script>
-        var asm = JSON.parse('{!! $asm !!}');
-        var asm_ctx = document.getElementById('asm').getContext('2d');
-        var asmChart = new Chart(asm_ctx, asm);
+        $( document ).ready(function() {
+            var asm = JSON.parse('{!! $asm !!}');
+            var asm_ctx = document.getElementById('asm').getContext('2d');
+            var asmChart = new Chart(asm_ctx, asm);
 
-        var casm = JSON.parse('{!! $casm !!}');
-        var casm_ctx = document.getElementById('casmChart').getContext('2d');
-        var casmChart = new Chart(casm_ctx, casm);
+            var casm = JSON.parse('{!! $casm !!}');
+            var casm_ctx = document.getElementById('casmChart').getContext('2d');
+            var casmChart = new Chart(casm_ctx, casm);
 
-        var rasm = JSON.parse('{!! $rasm !!}');
-        var rasm_ctx = document.getElementById('rasmChart').getContext('2d');
-        var rasmChart = new Chart(rasm_ctx, rasm);
+            var rasm = JSON.parse('{!! $rasm !!}');
+            var rasm_ctx = document.getElementById('rasmChart').getContext('2d');
+            var rasmChart = new Chart(rasm_ctx, rasm);
 
-        var rpm = JSON.parse('{!! $rpm !!}');
-        var rpm_ctx = document.getElementById('rpmChart').getContext('2d');
-        var rpmChart = new Chart(rpm_ctx, rpm);
+            var rpm = JSON.parse('{!! $rpm !!}');
+            var rpm_ctx = document.getElementById('rpmChart').getContext('2d');
+            var rpmChart = new Chart(rpm_ctx, rpm);
 
-        var lf = JSON.parse('{!! $lf !!}');
-        var lf_ctx = document.getElementById('lfChart').getContext('2d');
-        var lfChart = new Chart(lf_ctx, lf);
+            var lf = JSON.parse('{!! $lf !!}');
+            var lf_ctx = document.getElementById('lfChart').getContext('2d');
+            var lfChart = new Chart(lf_ctx, lf);
 
-        var py = JSON.parse('{!! $py !!}');
-        var py_ctx = document.getElementById('pyChart').getContext('2d');
-        var pyChart = new Chart(py_ctx, py);
+            var py = JSON.parse('{!! $py !!}');
+            var py_ctx = document.getElementById('pyChart').getContext('2d');
+            var pyChart = new Chart(py_ctx, py);
 
-        var cps = JSON.parse('{!! $cps !!}');
-        var cps_ctx = document.getElementById('cpsChart').getContext('2d');
-        var cpsChart = new Chart(cps_ctx, cps);
+            var cps = JSON.parse('{!! $cps !!}');
+            var cps_ctx = document.getElementById('cpsChart').getContext('2d');
+            var cpsChart = new Chart(cps_ctx, cps);
 
-        var ms = JSON.parse('{!! $ms !!}');
-        var ms_ctx = document.getElementById('msChart').getContext('2d');
-        var msChart = new Chart(ms_ctx, ms);
+            var ms = JSON.parse('{!! $ms !!}');
+            var ms_ctx = document.getElementById('msChart').getContext('2d');
+            var msChart = new Chart(ms_ctx, ms);
+
+
+            var limit = 10;
+            $('.airline_checkbox').on('change', function(evt) {
+                if($('.airline_checkbox').filter(':checked').length > limit) {
+                    alert("Max 10 Airlines");
+                    this.checked = false;
+                }
+            });
+
+            $('#quarter').on('change', function(evt) {
+
+                var year = 2016;
+                var quarter = $(this).val();
+                $('#collapseExample').empty();
+
+                var data = {
+                    "year": year,
+                    "quarter" : quarter
+                };
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "{{route('getAllCarrier')}}", //Relative or absolute path to response.php file
+                    data: data,
+                    success: function(data) {
+                        var i;
+                        for ( i = 0; i < data.length; i++) {
+                            var append_str = '<div class="form-check form-check-inline col-4 airline_group"><input class="form-check-input airline_checkbox" name="airline[]" type="checkbox" id="'+ data[i].code +'" value="'+ data[i].code +'"><label class="form-check-label" for="'+ data[i].code +'">'+ data[i].name +'</label></div>';
+                            $('#collapseExample').append(append_str);
+
+                        }
+
+                    }
+                });
+            });
+        });
     </script>
 @endsection

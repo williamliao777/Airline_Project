@@ -10,19 +10,19 @@ class T100 extends Model
 {
     use HasFactory;
 
-    public function getDistSeatPass($t100, $origin){
-        $t100_dist_seat_pass = DB::select("select    t.ORIGIN as origin, t.DEST as dest, sum(t.DEPARTURES_PERFORMED*t.DISTANCE) as dist, sum(t.DEPARTURES_PERFORMED*t.SEATS) as seat, sum(t.DEPARTURES_PERFORMED*t.PASSENGERS) as pass
-                                    from    {$t100} t
-                                    where   t.ORIGIN='{$origin}'
+    public function getDistSeatPass($year, $quarter, $origin){
+        $t100_dist_seat_pass = DB::select("select  t.ORIGIN as origin, t.DEST as dest, sum(t.DEPARTURES_PERFORMED*t.DISTANCE) as dist, sum(t.DEPARTURES_PERFORMED*t.SEATS) as seat, sum(t.DEPARTURES_PERFORMED*t.PASSENGERS) as pass
+                                    from    t100_seg t
+                                    where   t.ORIGIN='{$origin}' and t.YEAR = {$year} and t.QUARTER = {$quarter}
                                     group by t.ORIGIN, t.DEST");
         return $t100_dist_seat_pass;
     }
 
-    public function getSeatAndPassGroupByOrigin($market, $year, $quarter){
+    public function getSeatAndPassGroupByAirline($year, $quarter, $airlines){
 
         $return = DB::select("select CARRIER, sum(SEATS) as seats, sum(DISTANCE) as distance, sum(PASSENGERS) as passenger
-                                    from t100_seg where ORIGIN = '{$market}' and YEAR = {$year} and QUARTER = {$quarter}
-                                    group by ORIGIN, CARRIER");
+                                    from t100_seg where YEAR = {$year} and QUARTER = {$quarter} and CARRIER in ({$airlines})
+                                    group by CARRIER");
 
         return $return;
     }
@@ -34,6 +34,12 @@ class T100 extends Model
                                     group by YEAR,QUARTER");
 
         return $return[0];
+    }
+
+    public function getAllCarrier($year, $quarter){
+        $return = DB::select("select CARRIER as code, CARRIER_NAME as name from t100_seg where YEAR= {$year} and QUARTER = {$quarter} group by CARRIER,CARRIER_NAME");
+
+        return $return;
     }
 
     public function getAllOrigin($year, $quarter){

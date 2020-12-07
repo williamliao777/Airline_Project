@@ -23,27 +23,44 @@ class AirlineMetricsController extends Controller
     public function index(Request $request)
     {
         $year = $request->year;
-        $market = $request->market;
         $quarter = $request->quarter;
+        $airlines = $request->airline;
 
         if($year == ""){
             $year = 2016;
         }
-        if($market == ""){
-            $market = "IAD";
-        }
+
         if($quarter == ""){
             $quarter = 3;
         }
 
+        if($airlines == ""){
+            $airlines = array(
+                "MQ",
+                "OH",
+                "QX",
+                "SY",
+                "VX"
+            );
+        }
+
+        //parse airline array to string
+        $airline_group = "";
+        foreach ($airlines as $key => $airline){
+            if($key == 0){
+                $airline_group .= "'{$airline}'";
+            }else{
+                $airline_group .= ",'{$airline}'";
+            }
+
+        }
+
         $t100 = new T100();
         $form41 = new Form41();
-        $airport = new Airport();
 
-        $t100_result = $t100->getSeatAndPassGroupByOrigin($market, $year, $quarter);
+        $t100_result = $t100->getSeatAndPassGroupByAirline($year, $quarter, $airline_group);
         $t100_total = $t100->getTotalPassengerAndSeat($year, $quarter);
         $op_result = $form41->getOpExpenseRevenue($year, $quarter);
-        $airports_result = $airport->getAllAirport();
 
         $combined_array = array();
         foreach ($t100_result as $asm){
@@ -61,6 +78,8 @@ class AirlineMetricsController extends Controller
                 $combined_array[$op->CARRIER]["passenger_revenue"] = $op->passenger_revenue;
             }
         }
+
+        //dd($t100_result, $t100_total, $op_result, $combined_array);
 
         foreach ($combined_array as $key => $value){
             if(!isset($value["expense"])){
@@ -179,9 +198,7 @@ class AirlineMetricsController extends Controller
         return view('admin.airline_metrics', [
             "menus" => $menus,
             "current_menu" => $this->current_menu,
-            "airports" => $airports_result,
             "year" => $year,
-            "market" => $market,
             "quarter" => $quarter,
             "asm" => json_encode($asm_array),
             "casm" => json_encode($casm_array),
@@ -192,5 +209,16 @@ class AirlineMetricsController extends Controller
             "cps" => json_encode($cps_array),
             "ms" => json_encode($ms_array)
         ]);
+    }
+
+    public function getAllCarrierApi(Request $request){
+
+        $year = $request->year;
+        $quarter = $request->quarter;
+
+        $form41 = new Form41();
+        $result = $form41->getAllCarrierByYearAndQuarter($year, $quarter);
+
+        echo json_encode($result);
     }
 }

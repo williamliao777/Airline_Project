@@ -11,10 +11,6 @@
                         <h1 class="m-0 text-dark">{{$current_menu}}</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard v1</li>
-                        </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -85,7 +81,7 @@
                         <!-- AREA CHART -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Map</h3>
+                                <h3 class="card-title">Total Flights</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -245,7 +241,6 @@ $( document ).ready(function() {
                         text: '('+ data[i].code + ') '+ data[i].name
                     }));
                 }
-                console.log();
             }
         });
     });

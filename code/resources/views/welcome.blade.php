@@ -8,7 +8,7 @@
             <div class="text_box">
                 <p>Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
             </div>
-            <a class="btn btn-lg btn-success" href="#" role="button">View Demo</a>
+            <a class="btn btn-lg btn-success" href="{{route('airlineMetrics')}}" role="button">View Demo</a>
         </div>
         <img src="{{ asset('img/welcome/sky.jpg') }}" id="sky">
         <img src="{{ asset('img/welcome/airplane.png') }}" id="airplane">
@@ -27,28 +27,48 @@
         <h1 class="text-center m-5">Developer</h1>
         <div class="row developer">
             <div class="col-lg-3 developer-1">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-                <h2>Heading</h2>
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#777"></rect>
+                    <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                    <image href="{{asset("img/welcome/chi.png")}}" height="140" width="140"/>
+                </svg>
+                <h2>Chi Zhang</h2>
                 <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+                <p>chiz@vt.edu</p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-3 developer-2">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-                <h2>Heading</h2>
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#777"></rect>
+                    <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                    <image href="{{asset("img/welcome/william.png")}}" height="140" width="140"/>
+                </svg>
+                <h2>Che-Hsien Liao</h2>
                 <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+                <p>chehsien@vt.edu</p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-3 developer-3">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-                <h2>Heading</h2>
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#777"></rect>
+                    <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                    <image href="{{asset("img/welcome/kevin.jpg")}}" height="140" width="140"/>
+                </svg>
+                <h2>Kai Hsiang Cheng</h2>
                 <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+                <p>khc@vt.edu</p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-3 developer-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-                <h2>Heading</h2>
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#777"></rect>
+                    <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                    <image href="{{asset("img/welcome/gary.png")}}" height="140" width="140"/>
+                </svg>
+                <h2>Gengrui Wei</h2>
                 <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+                <p>gwei1@vt.edu</p>
             </div><!-- /.col-lg-4 -->
         </div>
     </section>
@@ -59,30 +79,30 @@
                 <div class="col-md-7 order-md-2 feature-content">
                     <h2 class="featurette-heading">Airline Metrics</h2>
                     <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-                    <p><a class="btn btn-primary" href="#" role="button">View details »</a></p>
+                    <p><a class="btn btn-primary" href="{{route('airlineMetrics')}}" role="button">View details »</a></p>
                 </div>
-                <div class="col-md-5 order-md-1 pic" style="border: 2px solid black">
-                    <img src="" alt="">
+                <div class="col-md-5 order-md-1 pic">
+                    <img src="{{asset("img/welcome/market_performance.png")}}" alt="" style="width: 100%; height: 100%">
                 </div>
             </div>
             <div class="row feature">
                 <div class="col-md-7 order-md-2">
                     <h2 class="featurette-heading">Market Performance</h2>
                     <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-                    <p><a class="btn btn-primary" href="#" role="button">View details »</a></p>
+                    <p><a class="btn btn-primary" href="{{route('MarketPerformance')}}" role="button">View details »</a></p>
                 </div>
-                <div class="col-md-5 order-md-1 pic" style="border: 2px solid black">
-                    <img src="" alt="">
+                <div class="col-md-5 order-md-1 pic">
+                    <img src="{{asset("img/welcome/market_performance.png")}}" alt="" style="width: 100%; height: 100%">
                 </div>
             </div>
             <div class="row feature">
                 <div class="col-md-7 order-md-2">
                     <h2 class="featurette-heading">Aviation Supply and Demand</h2>
                     <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-                    <p><a class="btn btn-primary" href="#" role="button">View details »</a></p>
+                    <p><a class="btn btn-primary" href="{{route('supplyDemand')}}" role="button">View details »</a></p>
                 </div>
-                <div class="col-md-5 order-md-1 pic" style="border: 2px solid black">
-                    <img src="" alt="">
+                <div class="col-md-5 order-md-1 pic">
+                    <img src="{{asset("img/welcome/supply_demand.png")}}" alt="" style="width: 100%; height: 100%">
                 </div>
             </div>
         </div>
@@ -94,7 +114,7 @@
     <!-- Footer -->
     <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
         <div class="container text-center">
-            <small>Copyright &copy; Your Website</small>
+            <small>Copyright &copy; Virginia Tech 2020 Fall Database Management Group 4.</small>
         </div>
     </footer>
     <!-- Footer -->
@@ -225,7 +245,6 @@
                 // horizontal: true,
                 pinSpacing:false,
                 anticipatePin: 1,
-                markers: true,
                 scrub: 1,
                 // base vertical scrolling on how wide the container is so it feels more natural.
                 // end: () => `+=${smallFactsContainer.offsetWidth}`

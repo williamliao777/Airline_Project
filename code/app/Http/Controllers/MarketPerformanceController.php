@@ -25,7 +25,7 @@ class MarketPerformanceController extends Controller
         $origin = $request->origin;
         $destination = $request->destination;
         $quarter = $request->quarter;
-//        dd($airlines);
+
         if($year == ""){
             $year = 2016;
         }
@@ -61,7 +61,7 @@ class MarketPerformanceController extends Controller
 
             $t100_result = $t100->getMarketPerformByAirline($year, $quarter, $origin, $destination, $airline_group);
             $t100_total_route = $t100->getTotalPassengerAndSeatByRoute($year, $quarter, $origin, $destination);
-            $coupon_result = $coupon->getTotalFareAndAvgFareByAirline($origin, $destination);
+            $coupon_result = $coupon->getTotalFareAndAvgFareByAirline($year, $quarter, $origin, $destination);
 
             $combined_array = array();
             foreach ($t100_result as $single_airline){

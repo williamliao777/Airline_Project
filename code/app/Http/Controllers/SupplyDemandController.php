@@ -7,6 +7,7 @@ use App\Models\T100;
 use App\Models\Airport;
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use function PHPUnit\Framework\isEmpty;
 
 class SupplyDemandController extends Controller
 {
@@ -18,7 +19,23 @@ class SupplyDemandController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
+    public function index(Request $request){
+
+        $year = $request->year;
+        $origin = $request->origin;
+        $quarter = $request->quarter;
+
+        if($year == ""){
+            $year = 2016;
+        }
+
+        if($quarter == ""){
+            $quarter = 3;
+        }
+
+        if($origin == ""){
+            $origin = "IAD";
+        }
 
         $coupon = new Coupon();
         $T100 = new T100();
@@ -28,20 +45,18 @@ class SupplyDemandController extends Controller
         $airports = array();
         $routes = array();
 
-        $target = "IAD";
-
-        $DistSeatPass = $T100->getDistSeatPass("t100_seg", $target);
+        $DistSeatPass = $T100->getDistSeatPass($year, $quarter, $origin);
         foreach($DistSeatPass as $e){
             $total[$e->origin.'_'.$e->dest] = array(
                 "origin"=>$e->origin,
                 "dest"=>$e->dest,
-                "dist"=>$e->dist, 
+                "dist"=>$e->dist,
                 "seat"=>$e->seat,
                 "pass"=>$e->pass
             );
         }
-        
-        $AvgFare = $coupon->getAvgFare("coupon_2016_3_2", "IAD");
+
+        $AvgFare = $coupon->getAvgFare($year, $quarter, $origin);
         foreach($AvgFare as $e){
             $total[$e->origin.'_'.$e->dest]["fare"] = $e->fare;
         }
@@ -60,7 +75,7 @@ class SupplyDemandController extends Controller
         }
         $airports = $Airport->getCoordinate(implode(",", array_unique($airports)));
         foreach($airports as $e){
-            if($e->airport == $target){
+            if($e->airport == $origin){
                 $e->is_origin = 1;
             }else{
                 $e->is_origin = 0;
@@ -77,5 +92,36 @@ class SupplyDemandController extends Controller
             "routes_json" => $routes_json,
             "total_json" => $total_json
         ]);
+    }
+
+    public function getAllAirportApi(Request $request){
+
+        $year = $request->year;
+        $quarter = $request->quarter;
+
+        $coupon = new Coupon();
+        $airport = new Airport();
+
+        $coupon_result = $coupon->getAllOrigin($year, $quarter);
+        $airport_result = $airport->getAllAirport();
+
+        $combine_array = array();
+        $airport_array = array();
+
+        foreach ($coupon_result as $value){
+            $combine_array[]["code"] = $value->code;
+        }
+
+        foreach ($airport_result as $airport){
+            $airport_array[$airport->code] = $airport->name;
+        }
+
+        foreach ($combine_array as $key => $value){
+            if(array_key_exists($value["code"], $airport_array)){
+                $combine_array[$key]["name"] = $airport_array[$value["code"]];
+            }
+        }
+
+        echo json_encode($combine_array);
     }
 }
