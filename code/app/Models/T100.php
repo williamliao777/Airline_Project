@@ -20,9 +20,9 @@ class T100 extends Model
 
     public function getSeatAndPassGroupByAirline($year, $quarter, $airlines){
 
-        $return = DB::select("select CARRIER, sum(SEATS) as seats, sum(DISTANCE) as distance, sum(PASSENGERS) as passenger
+        $return = DB::select("select CARRIER, CARRIER_NAME as name, sum(SEATS) as seats, sum(DISTANCE) as distance, sum(PASSENGERS) as passenger
                                     from t100_seg where YEAR = {$year} and QUARTER = {$quarter} and CARRIER in ({$airlines})
-                                    group by CARRIER");
+                                    group by CARRIER, CARRIER_NAME");
 
         return $return;
     }

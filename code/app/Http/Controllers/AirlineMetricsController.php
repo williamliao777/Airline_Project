@@ -64,6 +64,7 @@ class AirlineMetricsController extends Controller
 
         $combined_array = array();
         foreach ($t100_result as $asm){
+            $combined_array[$asm->CARRIER]["name"] = $asm->name;
             $combined_array[$asm->CARRIER]["seats"] = $asm->seats;
             $combined_array[$asm->CARRIER]["distance"] = $asm->distance;
             $combined_array[$asm->CARRIER]["passenger"] = $asm->passenger;
@@ -92,7 +93,7 @@ class AirlineMetricsController extends Controller
         $asm_array['type'] = 'bar';
         $asm_array['options']['scales']['yAxes'][0]['ticks']['beginAtZero'] = true;
         foreach ($combined_array as $carrier => $value){
-            $asm_array['data']['labels'][] = $carrier;
+            $asm_array['data']['labels'][] = $value["name"];
             $asm_array['data']['datasets'][0]['label'] = 'Available Seat Mile';
             $asm_array['data']['datasets'][0]['data'][] = $value["distance"] * $value["seats"];
             $asm_array['data']['datasets'][0]['backgroundColor'][] = 'rgba(54, 162, 235, 0.2)';
@@ -104,7 +105,7 @@ class AirlineMetricsController extends Controller
         $casm_array['type'] = 'bar';
         $casm_array['options']['scales']['yAxes'][0]['ticks']['beginAtZero'] = true;
         foreach ($combined_array as $carrier => $value){
-            $casm_array['data']['labels'][] = $carrier;
+            $casm_array['data']['labels'][] = $value["name"];
             $casm_array['data']['datasets'][0]['label'] = 'Cost per Available Seat Mile';
             $casm_array['data']['datasets'][0]['data'][] = $value["expense"]/($value["distance"] * $value["seats"]);
             $casm_array['data']['datasets'][0]['backgroundColor'][] = 'rgba(255, 206, 86, 0.2)';
@@ -116,7 +117,7 @@ class AirlineMetricsController extends Controller
         $rasm_array['type'] = 'bar';
         $rasm_array['options']['scales']['yAxes'][0]['ticks']['beginAtZero'] = true;
         foreach ($combined_array as $carrier => $value){
-            $rasm_array['data']['labels'][] = $carrier;
+            $rasm_array['data']['labels'][] = $value["name"];
             $rasm_array['data']['datasets'][0]['label'] = 'Revenue per Available Seat Mile';
             $rasm_array['data']['datasets'][0]['data'][] = $value["revenues"]/($value["distance"] * $value["seats"]);
             $rasm_array['data']['datasets'][0]['backgroundColor'][] = 'rgba(255, 206, 86, 0.2)';
@@ -128,7 +129,7 @@ class AirlineMetricsController extends Controller
         $rpm_array['type'] = 'bar';
         $rpm_array['options']['scales']['yAxes'][0]['ticks']['beginAtZero'] = true;
         foreach ($combined_array as $carrier => $value){
-            $rpm_array['data']['labels'][] = $carrier;
+            $rpm_array['data']['labels'][] = $value["name"];
             $rpm_array['data']['datasets'][0]['label'] = 'Revenue Passenger Mile';
             $rpm_array['data']['datasets'][0]['data'][] = $value["distance"] * $value["passenger"];
             $rpm_array['data']['datasets'][0]['backgroundColor'][] = 'rgba(54, 162, 235, 0.2)';
@@ -146,7 +147,7 @@ class AirlineMetricsController extends Controller
             $lf_array['data']['datasets'][0]['backgroundColor'][] = 'rgba(54, 162, 235, 0.2)';
             $lf_array['data']['datasets'][0]['borderColor'][] = 'rgba(54, 162, 235, 1)';
             $lf_array['data']['datasets'][0]['label'] = 'Load Factor';
-            $lf_array['data']['labels'][] = $carrier;
+            $lf_array['data']['labels'][] = $value["name"];
             $lf_array['data']['datasets'][0]['data'][] = $value["passenger"]/$value["seats"];
         }
 
@@ -158,7 +159,7 @@ class AirlineMetricsController extends Controller
             if($value["passenger_revenue"] == 0){
                 continue;
             }
-            $py_array['data']['labels'][] = $carrier;
+            $py_array['data']['labels'][] = $value["name"];
             $py_array['data']['datasets'][0]['label'] = 'Passenger Yield';
             $py_array['data']['datasets'][0]['data'][] = $value["passenger_revenue"] / ($value["distance"] * $value["passenger"]);
             $py_array['data']['datasets'][0]['backgroundColor'][] = 'rgba(255, 206, 86, 0.2)';
@@ -170,7 +171,7 @@ class AirlineMetricsController extends Controller
         $cps_array['type'] = 'bar';
         $cps_array['options']['scales']['yAxes'][0]['ticks']['beginAtZero'] = true;
         foreach ($combined_array as $carrier => $value){
-            $cps_array['data']['labels'][] = $carrier;
+            $cps_array['data']['labels'][] = $value["name"];
             $cps_array['data']['datasets'][0]['label'] = 'Seat Capacity Share';
             $cps_array['data']['datasets'][0]['data'][] = $value["seats"] / $value["total_seat"];
             $cps_array['data']['datasets'][0]['backgroundColor'][] = 'rgba(255, 206, 86, 0.2)';
@@ -185,7 +186,7 @@ class AirlineMetricsController extends Controller
             if($value["passenger_revenue"] == 0){
                 continue;
             }
-            $ms_array['data']['labels'][] = $carrier;
+            $ms_array['data']['labels'][] = $value["name"];
             $ms_array['data']['datasets'][0]['label'] = 'Market share';
             $ms_array['data']['datasets'][0]['data'][] = $value["passenger"] / $value["total_passenger"];
             $ms_array['data']['datasets'][0]['backgroundColor'][] = 'rgba(54, 162, 235, 0.2)';

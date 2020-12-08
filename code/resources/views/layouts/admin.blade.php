@@ -83,10 +83,10 @@
     @yield('content')
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-        <strong>Copyright © 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+        <strong>Virginia tech 2020 Fall Database Management Group 4.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.0.3
+            <b>Version</b> 1.0.0
         </div>
     </footer>
 

@@ -6,7 +6,7 @@
         <div class="main-text">
             <h1>Airline Dashboard</h1>
             <div class="text_box">
-                <p>Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                <p>Visualize data for every airline company.</p>
             </div>
             <a class="btn btn-lg btn-success" href="{{route('airlineMetrics')}}" role="button">View Demo</a>
         </div>
@@ -34,7 +34,6 @@
                     <image href="{{asset("img/welcome/chi.png")}}" height="140" width="140"/>
                 </svg>
                 <h2>Chi Zhang</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
                 <p>chiz@vt.edu</p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-3 developer-2">
@@ -45,7 +44,6 @@
                     <image href="{{asset("img/welcome/william.png")}}" height="140" width="140"/>
                 </svg>
                 <h2>Che-Hsien Liao</h2>
-                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
                 <p>chehsien@vt.edu</p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-3 developer-3">
@@ -56,7 +54,6 @@
                     <image href="{{asset("img/welcome/kevin.jpg")}}" height="140" width="140"/>
                 </svg>
                 <h2>Kai Hsiang Cheng</h2>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
                 <p>khc@vt.edu</p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-3 developer-4">
@@ -67,7 +64,6 @@
                     <image href="{{asset("img/welcome/gary.png")}}" height="140" width="140"/>
                 </svg>
                 <h2>Gengrui Wei</h2>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
                 <p>gwei1@vt.edu</p>
             </div><!-- /.col-lg-4 -->
         </div>
@@ -78,7 +74,7 @@
             <div class="row feature">
                 <div class="col-md-7 order-md-2 feature-content">
                     <h2 class="featurette-heading">Airline Metrics</h2>
-                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                    <p class="lead">Uses different airline metrics for the comparison of the airline overall performance.</p>
                     <p><a class="btn btn-primary" href="{{route('airlineMetrics')}}" role="button">View details »</a></p>
                 </div>
                 <div class="col-md-5 order-md-1 pic">
@@ -88,7 +84,7 @@
             <div class="row feature">
                 <div class="col-md-7 order-md-2">
                     <h2 class="featurette-heading">Market Performance</h2>
-                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                    <p class="lead">Visualizes the performance of airlines in each market in a single quarter.</p>
                     <p><a class="btn btn-primary" href="{{route('MarketPerformance')}}" role="button">View details »</a></p>
                 </div>
                 <div class="col-md-5 order-md-1 pic">
@@ -98,7 +94,7 @@
             <div class="row feature">
                 <div class="col-md-7 order-md-2">
                     <h2 class="featurette-heading">Aviation Supply and Demand</h2>
-                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                    <p class="lead">Demonstrates the supply of aviation service, traveling demand, and an index indicating market saturation, for an airport in a certain period of time.</p>
                     <p><a class="btn btn-primary" href="{{route('supplyDemand')}}" role="button">View details »</a></p>
                 </div>
                 <div class="col-md-5 order-md-1 pic">
@@ -108,7 +104,7 @@
         </div>
         <div class="footer-img">
             <div class="cover-mask"></div>
-            <img src="{{asset("img/welcome/airport.jpg")}}" alt="">
+            <img src="{{asset("img/welcome/airport.png")}}" style="box-shadow:3px 3px 12px gray;" alt="">
         </div>
     </section>
     <!-- Footer -->
