@@ -269,11 +269,12 @@
         var label = new Array();
         var data = new Array();
         for(i in total_json){
-            label.push(total_json[i].origin+'_'+total_json[i].dest)
-            data.push(total_json[i].fare)
+            var json = total_json[i];
+            console.log(json);
+            label.push(json.origin+'_'+json.dest)
+            var avgFareMileSeat = (json.fare/json.dist) * (json.seat/json.pass);
+            data.push(avgFareMileSeat)
         }
-
-        console.log(data)
 
         var chart = new Chart('BarChart', {
                     type: "horizontalBar",
@@ -281,6 +282,14 @@
                     maintainAspectRatio: false,
                     legend: {
                         display: false
+                    },
+                    scales: {
+                        xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Potential Market'
+                        }
+                        }]
                     }
                     },
                     data: {
