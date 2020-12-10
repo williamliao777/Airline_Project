@@ -59,7 +59,7 @@ docker-compose build
 ```
 After build done
 ```
-docker-compose up -d nginx mysql phpmyadmin
+docker-compose up -d nginx
 ```
 
 **URL**
