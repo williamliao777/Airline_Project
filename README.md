@@ -15,7 +15,7 @@ https://docs.docker.com/get-docker/
 **4. clone project from github**
 https://github.com/williamliao777/Airline_Project/tree/master
 
-**4. install node js**
+**5. install node js**
 https://nodejs.org/en/
 
 
@@ -49,7 +49,7 @@ npm install && npm run dev
 **Build Docker Environment**
 
 cd to devOps folder
-copy .env.example  named .env
+copy .env.example  named .env 
 
 ```
 docker-compose up -d nginx mysql phpmyadmin
