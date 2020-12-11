@@ -45,14 +45,21 @@ composer update
 ```
 npm install && npm run dev
 ```
+* Generate APP_KEY
+```
+php artisan key:generate
+```
 
 **Build Docker Environment**
 
 cd to devOps folder
 copy .env.example  named .env 
-
 ```
-docker-compose up -d nginx mysql phpmyadmin
+docker-compose build
+```
+After build done
+```
+docker-compose up -d nginx
 ```
 
 **URL**
