@@ -6,7 +6,7 @@
         <div class="main-text">
             <h1>Airline Dashboard</h1>
             <div class="text_box">
-                <p>Visualize data for every airline company.</p>
+                <p>Financial and operating monitoring for airline companies.</p>
             </div>
             <a class="btn btn-lg btn-success" href="{{route('airlineMetrics')}}" role="button">View Demo</a>
         </div>
@@ -53,7 +53,7 @@
                     <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
                     <image href="{{asset("img/welcome/kevin.jpg")}}" height="140" width="140"/>
                 </svg>
-                <h2>Kai Hsiang Cheng</h2>
+                <h2>Kai-Hsiang Cheng</h2>
                 <p>khc@vt.edu</p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-3 developer-4">
@@ -74,7 +74,7 @@
             <div class="row feature">
                 <div class="col-md-7 order-md-2 feature-content">
                     <h2 class="featurette-heading">Airline Metrics</h2>
-                    <p class="lead">Uses different airline metrics for the comparison of the airline overall performance.</p>
+                    <p class="lead">The first module visualizes the airline metrics in airline-level, showing the ranking and volume of selected airlines.</p>
                     <p><a class="btn btn-primary" href="{{route('airlineMetrics')}}" role="button">View details »</a></p>
                 </div>
                 <div class="col-md-5 order-md-1 pic">
@@ -84,7 +84,7 @@
             <div class="row feature">
                 <div class="col-md-7 order-md-2">
                     <h2 class="featurette-heading">Market Performance</h2>
-                    <p class="lead">Visualizes the performance of airlines in each market in a single quarter.</p>
+                    <p class="lead">The second module visualizes the performance of airlines in market-level (non-stop route).</p>
                     <p><a class="btn btn-primary" href="{{route('MarketPerformance')}}" role="button">View details »</a></p>
                 </div>
                 <div class="col-md-5 order-md-1 pic">
@@ -93,8 +93,8 @@
             </div>
             <div class="row feature">
                 <div class="col-md-7 order-md-2">
-                    <h2 class="featurette-heading">Aviation Supply and Demand</h2>
-                    <p class="lead">Demonstrates the supply of aviation service, traveling demand, and an index indicating market saturation, for an airport in a certain period of time.</p>
+                    <h2 class="featurette-heading">Market potential</h2>
+                    <p class="lead">The third module visualizes the potential market metric, indicating prospective bussiness value, in airport-level. A potential market means a market with high passenger yield and low loading factor (non-saturated market)</p>
                     <p><a class="btn btn-primary" href="{{route('supplyDemand')}}" role="button">View details »</a></p>
                 </div>
                 <div class="col-md-5 order-md-1 pic">
