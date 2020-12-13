@@ -1,6 +1,6 @@
 # Airlina Project set up
 
-**software and tools***
+**software and tools**
 
 **1. Install PHP 7.4.***
 ```
