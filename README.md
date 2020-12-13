@@ -15,7 +15,7 @@ https://docs.docker.com/get-docker/
 **4. install node js**
 https://nodejs.org/en/
 
-**sclone project from github***
+**Clone Project From Github***
 https://github.com/williamliao777/Airline_Project/tree/master
 
 **Folder**
