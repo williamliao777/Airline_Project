@@ -1,5 +1,7 @@
 # Airlina Project set up
 
+**software and tools***
+
 **1. Install PHP 7.4.***
 ```
 curl -s http://php-osx.liip.ch/install.sh | bash -s 7.4
@@ -7,18 +9,14 @@ curl -s http://php-osx.liip.ch/install.sh | bash -s 7.4
 **2. Install Composer(globlally)**
 https://getcomposer.org/doc/00-intro.md
 
-
-
 **3. Get Docker**
 https://docs.docker.com/get-docker/
 
-**4. clone project from github**
-https://github.com/williamliao777/Airline_Project/tree/master
-
-**5. install node js**
+**4. install node js**
 https://nodejs.org/en/
 
-
+**sclone project from github***
+https://github.com/williamliao777/Airline_Project/tree/master
 
 **Folder**
 ```
